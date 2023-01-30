@@ -5,9 +5,9 @@ internal class Worker : IHostedService
 {
     private readonly IKeyvaultClient keyvaultClient;
 
-    public Worker(IKeyvaultClient service)
+    public Worker(IKeyvaultClient keyvaultClient)
     {
-        this.keyvaultClient = service;
+        this.keyvaultClient = keyvaultClient;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
