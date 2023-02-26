@@ -11,6 +11,8 @@ var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
 //Load appsettings based on the Enviroment
 hostBuilder.Configuration.AddJsonFile($"appsettings.{environment}.json");
 
+// Alternative way to check Environment
+Console.WriteLine($"IsProduction: {hostBuilder.Environment.IsProduction()}, Enviroment Variable Value: {environment}");
 
 //Register Hosted Service
 hostBuilder.Services.AddHostedService<Worker>()
