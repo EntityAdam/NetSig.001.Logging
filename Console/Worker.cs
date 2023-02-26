@@ -13,8 +13,8 @@ internal class Worker : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         //TODO : Implement
-        var f = await keyvaultClient.FetchConnectionStringsFromKeyvault();
-        Console.WriteLine($"Secret Value: {f}");
+        var value = await keyvaultClient.FetchConnectionStringsFromKeyvault();
+        Console.WriteLine($"Secret Value: {value}");
         //TODO : Use ILogger
         //TODO : Use App Insights TelemetryClient here to track dependency call to Azure Key Vault
       //  throw new NotImplementedException();
