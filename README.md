@@ -8,7 +8,7 @@ SIG DotNet Refresher
 #Bash - Variables
 rgName="rg-sig-dotnet-refresh"
 keyVaultName="kv-sig-dotnet-refresh"
-keyName="connectionString"
+secretName="connectionString"
 ```
 
 ## 2. Create Resource Group
@@ -25,8 +25,10 @@ az keyvault create --name $keyVaultName --resource-group $rgName --location "Eas
 
 After the resource is deployed, you can check the URI: https://<key-vault-name>.vault.azure.net/ 
 
-## 4. Now we will create a Key in the Key Vault
+## 4. Create a Secret in the Key Vault
+
+In this example we will create a connection string secret to store its value.
 
 ```bash
-az keyvault key create --vault-name $keyVaultName -n $keyName 
+az keyvault secret set --name $secretName --vault-name $keyVaultName --value "Server=localdb;Database=mydb;Authentication=Active Directory Integrated"
 ```

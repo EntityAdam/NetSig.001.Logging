@@ -13,10 +13,11 @@ namespace Common
             this.configuration = configuration;
         }
 
-        public async Task FetchConnectionStringsFromKeyvault()
+        public async Task<string> FetchConnectionStringsFromKeyvault()
         {
             //Fetch Azure Key Vault URI from configuration
-            var keyvault = configuration.GetValue<string>("AZURE_KEYVAULT_URI");
+            var keyvault = configuration.GetValue<string>("AzureKeyVault:Uri");
+            var secretName = configuration.GetValue<string>("AzureKeyVault:SecretName");
 
             //TODO : Change to Logging
             Console.WriteLine($"Fetching connection string from {keyvault}");
@@ -25,10 +26,12 @@ namespace Common
             var client = new SecretClient(new Uri(keyvault), new DefaultAzureCredential());
 
             //TODO : No magic strings!
-            var response = await client.GetSecretAsync("myservice-eventhubs-connectionstring");
+            var response = await client.GetSecretAsync(secretName);
 
+            //TODO : Handle nullability checks
             //TODO : Change to Logging
             Console.WriteLine($"Event Hubs Connection String: '{response.Value.Value}'");
+            return response.Value.Value;
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IKeyvaultClient
     {
-        Task FetchConnectionStringsFromKeyvault();
+        Task<string> FetchConnectionStringsFromKeyvault();
     }
 }
