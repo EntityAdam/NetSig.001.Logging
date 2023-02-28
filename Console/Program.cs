@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 var hostBuilder = Host.CreateApplicationBuilder(args);
 
 hostBuilder.Services.AddHostedService<Worker>()
-                    .AddTransient<IKeyvaultClient, KeyvaultClient>();
+                    .AddTransient<IKeyvaultClient, KeyvaultClient>()
+                    .AddApplicationInsightsTelemetryWorkerService();
 
-hostBuilder.Build().RunAsync();
+await hostBuilder.Build().RunAsync();
