@@ -1,0 +1,21 @@
+{
+    "AZURE_KEYVAULT_URI": "https://{My-key-vault}.vault.azure.net/",
+    "AZURE_KEYVAULT_KEY": "myservice-eventhubs-connectionstring",
+    "ApplicationInsights":
+    {
+        "ConnectionString" : "InstrumentationKey=00000000-0000-0000-0000-000000000000;"
+    },
+    "Logging":
+    {
+        "ApplicationInsights":
+        {
+            "LogLevel": {
+                "Default": "Information"
+            }
+        },
+        "LogLevel":
+        {
+            "Default": "Debug"
+        }
+    } 
+}
