@@ -12,11 +12,12 @@ var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
 hostBuilder.Configuration.AddJsonFile($"appsettings.{environment}.json");
 
 // Alternative way to check Environment
-Console.WriteLine($"IsProduction: {hostBuilder.Environment.IsProduction()}, Enviroment Variable Value: {environment}");
+//Console.WriteLine($"IsProduction: {hostBuilder.Environment.IsProduction()}, Enviroment Variable Value: {environment}");
 
 //Register Hosted Service
 hostBuilder.Services.AddHostedService<Worker>()
-                    .AddTransient<IKeyvaultClient, KeyvaultClient>();
+                    .AddTransient<IKeyvaultClient, KeyvaultClient>()
+                    .AddApplicationInsightsTelemetryWorkerService(); ;
 
 
 
